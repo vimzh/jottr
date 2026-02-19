@@ -3,49 +3,35 @@ import Heading from "./_components/Heading";
 import Footer from "./_components/Footer";
 import Features from "./_components/Features";
 import Content from "./_components/Content";
-import Newsbox from "./_components/Newsbox";
 
 function MarketingPage() {
   return (
-    <div
-      className="
-        min-h-screen flex flex-col
-        bg-white text-[#2f3437]
-        dark:bg-white dark:text-[#2f3437]
-        relative
-      "
-    >
-      {/* Background Image with Fade In/Out Effect */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat h-screen opacity-40"
-        style={{
-          backgroundImage: "url('/background.jpg')",
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.8) 70%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.8) 70%, transparent 100%)",
-          zIndex: 0,
-        }}
-      />
-
-      {/* Content */}
-      <div className="flex flex-col items-center justify-center text-center gap-y-8 flex-1 px-6 relative z-10">
+    <div className="min-h-screen flex flex-col bg-[#FAFAF8] text-[#1a1a1a] relative">
+      {/* Hero */}
+      <div className="flex flex-col items-center justify-center text-center flex-1 px-6 pt-32 md:pt-40 pb-20">
         <Heading />
       </div>
 
-      {/* Features Section */}
-      <div className="relative z-10">
-        <Features />
-        <Content />
-      </div>
+      {/* Features */}
+      <Features />
 
-      <div className="relative z-10 pb-4">
-        <Footer />
-      </div>
+      {/* Product Showcase */}
+      <Content />
 
-      <div className="fixed right-4 bottom-4 z-50">
-        <Newsbox />
-      </div>
+      {/* Final CTA */}
+      <section className="w-full py-24 md:py-32 px-6">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-[#1a1a1a]">
+            Start writing, freely.
+          </h2>
+          <p className="text-lg text-[#6b6b6b] max-w-xl mx-auto leading-relaxed">
+            No setup. No friction. Just open jottr and let your thoughts flow.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

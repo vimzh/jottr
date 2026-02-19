@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useConvexAuth } from "convex/react";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SignInButton } from "@clerk/nextjs";
 import { Spinner } from "@/components/ui/spinner";
@@ -12,69 +12,52 @@ function Heading() {
   const router = useRouter();
 
   return (
-    <div
-      className="
-        max-w-4xl min-h-screen pt-40 md:pt-48 pb-10 
-        flex flex-col items-center text-center space-y-8
-      "
-    >
-      {/* YC Badge - static colors / no theme */}
-      <div
-        className="
-          inline-flex items-center gap-2 text-sm md:text-base
-          text-gray-600 px-4 rounded-full py-2 border border-gray-300
-          bg-white/70 backdrop-blur-sm
-        "
-      >
-        <span>Not Backed by</span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="px-2 py-0.5 bg-orange-500 rounded font-bold text-white">
-            Y
-          </span>
-          <span className="text-orange-500 font-semibold">Combinator</span>
-        </span>
+    <div className="max-w-4xl flex flex-col items-center text-center space-y-8">
+      {/* Pill badge */}
+      <div className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-[#8a8a8a] px-4 py-2 rounded-full border border-[#e0e0dc] bg-white/60 backdrop-blur-sm">
+        Simple. Private. Fast.
       </div>
 
       {/* Main Heading */}
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight max-w-3xl">
-        <span className="bg-gradient-to-b from-black to-gray-500 bg-clip-text text-transparent">
+      <h1 className="font-serif text-5xl sm:text-6xl md:text-[5.5rem] font-semibold tracking-tight leading-[1.05] max-w-4xl">
+        <span className="text-[#1a1a1a]">
           The simplest place to jot your thoughts.
         </span>
       </h1>
 
       {/* Subheading */}
-      <p className="text-lg md:text-xl font-normal text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Capture, organize, and recall your thoughts instantly. Simple, fast note-taking that fits seamlessly into your digital life.
+      <p className="text-lg md:text-xl font-normal text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
+        Capture, organize, and recall your ideas instantly.
+        Note-taking that fits seamlessly into your flow.
       </p>
 
-      {/* CTA Buttons */}
-      <div className="pt-8">
+      {/* CTA */}
+      <div className="pt-4">
         {isLoading ? (
           <Button
             disabled
             size="lg"
-            className="rounded-xl px-10 text-lg font-medium shadow-md"
+            className="rounded-full px-10 text-base font-medium"
           >
             <Spinner size="lg" />
-            Loading Jottr...
           </Button>
         ) : isAuthenticated ? (
           <Button
             onClick={() => router.push("/documents")}
             size="lg"
-            className="group rounded-xl px-10 text-lg font-medium shadow-md hover:shadow-lg hover:scale-[1.02]"
+            className="group rounded-full px-10 text-base font-medium bg-[#1a1a1a] text-white hover:bg-[#333] shadow-sm cursor-pointer"
           >
             Enter Workspace
-            <ArrowRightIcon className="h-5 w-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
           </Button>
         ) : (
           <SignInButton mode="modal">
             <Button
               size="lg"
-              className="group rounded-xl px-10 text-lg font-medium shadow-md hover:shadow-lg hover:scale-[1.02]"
+              className="group rounded-full px-10 text-base font-medium bg-[#1a1a1a] text-white hover:bg-[#333] shadow-sm cursor-pointer"
             >
               Get Jottr Free
-              <ArrowRightIcon className="h-5 w-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
           </SignInButton>
         )}

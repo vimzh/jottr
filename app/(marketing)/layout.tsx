@@ -3,18 +3,9 @@ import Navbar from "./_components/Navbar";
 
 function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="
-        h-full
-        bg-white text-black
-        dark:bg-white dark:text-black
-      "
-    >
+    <div className="h-full bg-[#FAFAF8] text-[#1a1a1a]">
       <Navbar />
-
-      <main className="h-full">
-        {children}
-      </main>
+      <main className="h-full">{children}</main>
     </div>
   );
 }
