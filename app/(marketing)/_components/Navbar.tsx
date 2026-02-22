@@ -15,29 +15,31 @@ function Navbar() {
   return (
     <div
       className={cn(
-        "z-50 fixed top-0 left-0 right-0 flex items-center justify-between h-16 px-6 md:px-10",
-        "bg-transparent transition-all duration-300 ease-in-out",
+        "z-50 fixed top-0 flex items-center w-full h-16 px-4 md:px-6",
+        !scrolled && "py-3",
+        // default transparent until scrolled
+        "bg-transparent",
+        "transition-all duration-300 ease-in-out",
         scrolled &&
-          "border-b border-[#e8e8e4] bg-[#FAFAF8]/90 backdrop-blur-md"
+          "border-b border-gray-300 shadow-sm backdrop-blur-md bg-white/90"
       )}
     >
-      {/* Logo */}
-      <Link href="/">
-        <span className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-[#1a1a1a] cursor-pointer">
-          jottr
-        </span>
-      </Link>
+      {/* Logo - static dark text */}
+      <p className="font-extrabold text-2xl md:text-3xl tracking-tight text-black">
+        jottr
+      </p>
 
-      <div className="flex items-center gap-x-3">
+      <div className="ml-auto flex items-center gap-x-2 md:gap-x-4">
         {isLoading && <Spinner size="lg" />}
 
+        {/* Not authenticated */}
         {!isAuthenticated && !isLoading && (
           <>
             <SignInButton mode="modal">
               <Button
                 size="default"
                 variant="ghost"
-                className="text-sm font-medium text-[#1a1a1a] hover:bg-[#1a1a1a]/5 cursor-pointer"
+                className="text-base font-medium text-black transition-all duration-150 border border-transparent hover:scale-[1.03]"
               >
                 Log in
               </Button>
@@ -46,7 +48,7 @@ function Navbar() {
             <SignInButton mode="modal">
               <Button
                 size="default"
-                className="hidden sm:inline-flex text-sm font-medium rounded-full px-6 bg-[#1a1a1a] text-white hover:bg-[#333] cursor-pointer"
+                className="hidden sm:inline-flex text-base font-medium rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] bg-black text-white"
               >
                 Get Jottr Free
               </Button>
@@ -54,15 +56,23 @@ function Navbar() {
           </>
         )}
 
+        {/* Authenticated */}
         {isAuthenticated && !isLoading && (
           <>
             <Button
               size="default"
+              variant="ghost"
               asChild
-              className="text-sm font-medium rounded-full px-6 bg-[#1a1a1a] text-white hover:bg-[#333] cursor-pointer"
+              className="text-black hover:scale-[1.03]"
             >
-              <Link href="/documents">Enter Jottr</Link>
+              <Link
+                href="/documents"
+                className="text-base font-medium transition-all duration-150 border border-transparent"
+              >
+                Enter Jottr
+              </Link>
             </Button>
+
             <UserButton afterSignOutUrl="/" />
           </>
         )}
