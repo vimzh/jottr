@@ -6,8 +6,9 @@ function MarketingLayout({ children }: { children: React.ReactNode }) {
     <div
       className="
         h-full
-        bg-white text-black
-        dark:bg-white dark:text-black
+        bg-background text-foreground
+        dark:bg-background dark:text-foreground
+        font-sans
       "
     >
       <Navbar />
