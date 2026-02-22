@@ -10,8 +10,8 @@ function MarketingPage() {
     <div
       className="
         min-h-screen flex flex-col
-        bg-background text-foreground
-        dark:bg-background dark:text-foreground
+        bg-white text-[#2f3437]
+        dark:bg-white dark:text-[#2f3437]
         relative
       "
     >
@@ -21,9 +21,9 @@ function MarketingPage() {
         style={{
           backgroundImage: "url('/background.jpg')",
           maskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(248,250,252,0.5) 15%, rgba(248,250,252,0.8) 40%, rgba(248,250,252,0.8) 70%, transparent 100%)",
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.8) 70%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, rgba(248,250,252,0.5) 15%, rgba(248,250,252,0.8) 40%, rgba(248,250,252,0.8) 70%, transparent 100%)",
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.8) 70%, transparent 100%)",
           zIndex: 0,
         }}
       />
