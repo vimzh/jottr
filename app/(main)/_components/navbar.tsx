@@ -77,7 +77,7 @@ function Navbar({ preview }: NavbarProps) {
     <>
       <nav
         className={`
-          sticky top-0 z-20 bg-background dark:bg-[#1f1f1f] px-3 py-2 h-12 flex items-center gap-x-4
+          sticky top-0 z-20 glass-subtle backdrop-blur-xl px-4 py-2 h-14 flex items-center gap-x-4
           ${borderColor} transition-colors duration-300
           shadow-sm
         `}
@@ -88,21 +88,22 @@ function Navbar({ preview }: NavbarProps) {
             onClick={() =>
               window.dispatchEvent(new CustomEvent("custom:openSidebar"))
             }
-            className="h-6 w-6 text-muted-foreground cursor-pointer flex-shrink-0"
+            className="h-5 w-5 text-muted-foreground cursor-pointer flex-shrink-0 hover:text-foreground transition-colors"
           />
         )}
 
         {documentId && document ? (
-          <div className="flex items-center gap-x-2 min-w-0 flex-1">
-            <span className="text-sm font-medium truncate">
-              {document.icon} {document.title}
+          <div className="flex items-center gap-x-3 min-w-0 flex-1">
+            <span className="text-sm font-medium truncate flex items-center gap-1.5">
+              <span className="text-base">{document.icon}</span>
+              {document.title}
             </span>
             {!preview && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsEditing(true)}
-                className="h-7 w-7 p-0 flex-shrink-0 hover:bg-muted"
+                className="h-7 w-7 p-0 flex-shrink-0 hover:bg-accent/50 transition-all"
               >
                 <Edit3 className="h-3.5 w-3.5" />
               </Button>
@@ -110,7 +111,7 @@ function Navbar({ preview }: NavbarProps) {
           </div>
         ) : documentId && document === undefined ? (
           <div className="flex items-center gap-x-2 flex-1">
-            <div className="h-4 w-32 bg-muted animate-pulse rounded" />
+            <div className="h-4 w-32 bg-muted/50 animate-pulse rounded" />
           </div>
         ) : (
           <div className="flex-1" />

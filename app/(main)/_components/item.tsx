@@ -101,17 +101,17 @@ export const Item = ({
       role="button"
       style={{ paddingLeft: level ? `${level * 12 + 12}px` : "12px" }}
       className={cn(
-        "group min-h-[27px] text-sm py-1 pr-3 w-full flex items-center font-normal gap-2 rounded-sm cursor-pointer transition-colors duration-150",
+        "group min-h-[27px] text-sm py-1 pr-3 w-full flex items-center font-normal gap-2 rounded-md transition-all duration-150",
         active
-          ? "bg-primary/8 text-foreground"
-          : "text-muted-foreground hover:bg-accent/30 dark:hover:bg-accent/20"
+          ? "bg-primary/10 text-foreground shadow-sm"
+          : "text-muted-foreground hover:bg-accent/20 dark:hover:bg-accent/15"
       )}
     >
       {/* Chevron for expandable items */}
       {!!id && (
         <div
           role="button"
-          className="h-4 w-4 flex items-center justify-center rounded-sm hover:bg-accent"
+          className="h-4 w-4 flex items-center justify-center rounded-sm hover:bg-accent/30 transition-colors"
           onClick={handleExpand}
         >
           <ChevronIcon className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50" />
@@ -132,12 +132,12 @@ export const Item = ({
 
       {/* Keyboard shortcuts */}
       {isSearch && (
-        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-glass-border bg-glass-bg-subtle px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 backdrop-blur-sm">
           <span className="text-xs">⌘</span>K
         </kbd>
       )}
       {isCreate && (
-        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-glass-border bg-glass-bg-subtle px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 backdrop-blur-sm">
           <span className="text-xs">⌘</span>O
         </kbd>
       )}
@@ -147,13 +147,13 @@ export const Item = ({
             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
               <div
                 role="button"
-                className="opacity-0 group-hover:opacity-100 h-4 w-4 ml-auto rounded hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                className="opacity-0 group-hover:opacity-100 h-4 w-4 ml-auto rounded hover:bg-accent/30 transition-all"
               >
                 <MoreHorizontal className="h-4 w-4 rounded text-muted-foreground" />
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-40"
+              className="w-40 glass-strong border-glass-border backdrop-blur-xl"
               align="start"
               side="right"
               forceMount
@@ -162,7 +162,7 @@ export const Item = ({
                 <Archive className="h-4 w-4 mr-2 rounded text-muted-foreground" />
                 <p className="text-foreground text-sm">Archive note</p>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator className="bg-glass-border" />
               <div className="flex items-center gap-1 mx-2">
                 <p className="text-[12px] text-muted-foreground">
                   Last edited by:
@@ -176,7 +176,7 @@ export const Item = ({
           <div
             role="button"
             onClick={onCreate}
-            className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded hover:bg-accent/30 transition-all"
           >
             <PlusIcon className="h-4 w-4 text-muted-foreground" />
           </div>

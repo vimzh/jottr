@@ -6,79 +6,76 @@ import { ArrowRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SignInButton } from "@clerk/nextjs";
 import { Spinner } from "@/components/ui/spinner";
+import { motion } from "motion/react";
 
 function Heading() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const router = useRouter();
 
   return (
-    <div
-      className="
-        max-w-4xl min-h-screen pt-40 md:pt-48 pb-10 
-        flex flex-col items-center text-center space-y-8
-      "
-    >
-      {/* YC Badge - static colors / no theme */}
-      <div
-        className="
-          inline-flex items-center gap-2 text-sm md:text-base
-          text-gray-600 px-4 rounded-full py-2 border border-gray-300
-          bg-white/70 backdrop-blur-sm
-        "
+    <div className="max-w-5xl pt-20 pb-10 flex flex-col items-start text-left space-y-10">
+      {/* Main Heading - Two Lines */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+        className="space-y-2"
       >
-        <span>Not Backed by</span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="px-2 py-0.5 bg-orange-500 rounded font-bold text-white">
-            Y
+        <h1 className="font-figtree text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1]">
+          <span className="block text-black">Write Yourself</span>
+        </h1>
+        <h1 className="font-figtree text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1]">
+          <span className="text-black">Something </span>
+          <span className="font-cormorant inline-flex items-center justify-center bg-stone-900 text-white px-3 py-1 rounded-md font-medium align-baseline overflow-hidden">
+            <span className="relative z-10">beautiful</span>
+            <span className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent rounded-md pointer-events-none" />
           </span>
-          <span className="text-orange-500 font-semibold">Combinator</span>
-        </span>
-      </div>
-
-      {/* Main Heading */}
-      <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight max-w-3xl">
-        <span className="bg-gradient-to-b from-black to-gray-500 bg-clip-text text-transparent">
-          The simplest place to jot your thoughts.
-        </span>
-      </h1>
+          <span className="text-black">.</span>
+        </h1>
+      </motion.div>
 
       {/* Subheading */}
-      <p className="text-lg md:text-xl font-normal text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Capture, organize, and recall your thoughts instantly. Simple, fast note-taking that fits seamlessly into your digital life.
-      </p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        className="font-figtree text-lg md:text-xl font-light text-gray-500 max-w-xl leading-relaxed"
+      >
+        The fastest way to capture ideas and turn them into something meaningful.
+      </motion.p>
 
       {/* CTA Buttons */}
-      <div className="pt-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        className="pt-4"
+      >
         {isLoading ? (
           <Button
             disabled
-            size="lg"
-            className="rounded-xl px-10 text-lg font-medium shadow-md"
+            className="group inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg text-base font-medium bg-[#111111] text-white hover:bg-[#252525] shadow-[0_2px_8px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200"
           >
-            <Spinner size="lg" />
-            Loading Jottr...
+            <Spinner size="sm" />
+            Loading...
           </Button>
         ) : isAuthenticated ? (
           <Button
             onClick={() => router.push("/documents")}
-            size="lg"
-            className="group rounded-xl px-10 text-lg font-medium shadow-md hover:shadow-lg hover:scale-[1.02]"
+            className="group h-11 px-6 rounded-lg text-base font-medium bg-[#111111] text-white hover:bg-[#252525] shadow-[0_2px_8px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200"
           >
             Enter Workspace
-            <ArrowRightIcon className="h-5 w-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
           </Button>
         ) : (
           <SignInButton mode="modal">
             <Button
-              size="lg"
-              className="group rounded-xl px-10 text-lg font-medium shadow-md hover:shadow-lg hover:scale-[1.02]"
+              className="group h-11 px-6 rounded-lg text-base font-medium bg-[#111111] text-white hover:bg-[#252525] shadow-[0_2px_8px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200"
             >
-              Get Jottr Free
-              <ArrowRightIcon className="h-5 w-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+              Start Writing Free
             </Button>
           </SignInButton>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

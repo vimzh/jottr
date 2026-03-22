@@ -155,16 +155,16 @@ function Navigation() {
     <>
       {isMobile && !isCollapsed && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-black/30 z-40 backdrop-blur-sm"
           onClick={toggleCollapse}
         />
       )}
 
       <aside
-        className={`group/sidebar h-full bg-secondary overflow-y-auto relative flex flex-col transition-transform ease-out duration-200 
-          ${isMobile 
-            ? "fixed left-0 top-0 z-50 border-r border-border" 
-            : "border-r border-border"
+        className={`group/sidebar h-full glass-subtle overflow-y-auto relative flex flex-col transition-transform ease-out duration-200 border-r border-glass-border
+          ${isMobile
+            ? "fixed left-0 top-0 z-50"
+            : ""
           }`}
         style={{
           width: isMobile && !isCollapsed ? sidebarWidth : sidebarWidth,
@@ -172,11 +172,14 @@ function Navigation() {
           transition: isMobile ? "transform 0.2s ease-out" : "width 0.1s ease",
         }}
       >
-        <div className={`flex flex-col h-full ${isCollapsed ? "hidden" : ""}`}>
-          <div className="flex-shrink-0 border-b border-border/40">
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-glass-bg-subtle/50 via-transparent to-glass-bg-subtle/30 pointer-events-none" />
+        
+        <div className={`flex flex-col h-full ${isCollapsed ? "hidden" : ""} relative z-10`}>
+          <div className="flex-shrink-0 border-b border-glass-border/60 backdrop-blur-xl">
             <div className="px-3 py-3 flex justify-end">
               <button
-                className="h-4 w-4 text-muted-foreground rounded-sm hover:bg-accent cursor-pointer flex items-center justify-center transition-colors"
+                className="h-4 w-4 text-muted-foreground rounded-sm hover:bg-accent/50 cursor-pointer flex items-center justify-center transition-colors"
                 onClick={toggleCollapse}
                 aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
               >
@@ -189,7 +192,7 @@ function Navigation() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 px-3 py-3 border-b border-border/40">
+          <div className="flex-shrink-0 px-3 py-3 border-b border-glass-border/60 backdrop-blur-xl">
             <nav className="space-y-1">
               <Item
                 onclick={search.onOpen}
@@ -218,17 +221,17 @@ function Navigation() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 border-t border-border/40 px-3 py-3">
+          <div className="flex-shrink-0 border-t border-glass-border/60 backdrop-blur-xl px-3 py-3">
             <Popover>
               <PopoverTrigger asChild>
-                <button className="w-full flex items-center gap-x-2 px-2 py-1.5 rounded-sm hover:bg-accent text-sm text-muted-foreground transition-colors">
+                <button className="w-full flex items-center gap-x-2 px-2 py-1.5 rounded-sm hover:bg-accent/50 text-sm text-muted-foreground transition-colors">
                   <Trash className="h-4 w-4" />
                   <span>Trash</span>
                 </button>
               </PopoverTrigger>
 
               <PopoverContent
-                className="w-72 p-0"
+                className="w-72 glass-strong border-glass-border"
                 side={isMobile ? "bottom" : "right"}
                 align="start"
               >
@@ -247,8 +250,8 @@ function Navigation() {
           <div
             ref={resizerRef}
             onMouseDown={handleMouseDown}
-            className={`absolute h-full w-1 right-0 top-0 cursor-ew-resize bg-transparent transition-colors 
-              ${isResizing ? "bg-primary/40" : "hover:bg-primary/20"}`}
+            className={`absolute h-full w-1 right-0 top-0 cursor-ew-resize bg-transparent transition-colors
+              ${isResizing ? "bg-primary/30" : "hover:bg-primary/10"}`}
           />
         )}
       </aside>
@@ -256,7 +259,7 @@ function Navigation() {
       {isMobile && isCollapsed && (
         <button
           onClick={toggleCollapse}
-          className="fixed top-3 left-3 z-30 h-9 w-9 flex items-center justify-center rounded-md bg-secondary hover:bg-accent border border-border shadow-sm transition-colors"
+          className="fixed top-3 left-3 z-30 h-9 w-9 flex items-center justify-center rounded-md glass-strong hover:bg-accent/80 border border-glass-border shadow-lg transition-colors"
           aria-label="Open sidebar"
         >
           <MenuIcon className="h-5 w-5" />

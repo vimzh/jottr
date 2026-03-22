@@ -19,25 +19,24 @@ function UserItem() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {/* Aesthetic Improvement: Using standardized hover class and flexible layout */}
         <div
           role="button"
-          className="flex items-center w-full px-2 py-2 text-sm rounded-md hover:bg-accent transition-colors cursor-pointer"
+          className="flex items-center w-full px-2 py-2 text-sm rounded-md glass-button hover:bg-accent/50 transition-all cursor-pointer group"
         >
           <div className="flex items-center gap-x-2 max-w-[80%]">
-            <Avatar className="h-6 w-6">
+            <Avatar className="h-6 w-6 ring-2 ring-glass-border group-hover:ring-primary/20 transition-all">
               <AvatarImage src={user?.imageUrl} />
             </Avatar>
             <span className="text-sm font-medium line-clamp-1">
               {user?.fullName}&apos;s workspace
             </span>
           </div>
-          <ChevronsLeftRight className="ml-auto h-4 w-4 rotate-90 text-muted-foreground" />
+          <ChevronsLeftRight className="ml-auto h-4 w-4 rotate-90 text-muted-foreground group-hover:text-foreground transition-colors" />
         </div>
       </DropdownMenuTrigger>
-      
+
       <DropdownMenuContent
-        className="w-64"
+        className="w-64 glass-strong border-glass-border backdrop-blur-xl"
         align="start"
         alignOffset={10}
         side="bottom"
@@ -48,8 +47,8 @@ function UserItem() {
           </p>
         </DropdownMenuLabel>
 
-        <DropdownMenuSeparator />
-        
+        <DropdownMenuSeparator className="bg-glass-border" />
+
         <DropdownMenuItem asChild className="w-full h-auto py-2">
           <SignOutButton>
             <div
